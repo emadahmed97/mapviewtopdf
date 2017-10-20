@@ -41,7 +41,7 @@ function getZoom(geometry) {
   var maxLat = Math.max.apply(null, allLat);
   var minLng = Math.min.apply(null, allLng);
   var maxLng = Math.max.apply(null, allLng);
-  var zoom = 45; // choose an arbitrary large zoom level to start width
+  var zoom = 45; // choose an arbitrary large zoom level to start with
     while (zoom > 0) {
       var top_tile    = lat2tile(maxLat, zoom);
       var left_tile   = long2tile(minLng, zoom);
@@ -61,7 +61,7 @@ function getZoom(geometry) {
       zoom--;
     }
   }
-
+  // instantiate api and process images and tiles
   function instantiateAPI() {
     new DroneDeploy({version: 1}).then(function(dronedeploy){
       dronedeploy.Plans.getCurrentlyViewed().then(function(plan){
